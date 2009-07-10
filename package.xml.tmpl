@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.4.1" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+  <name>sfMinifyTSPlugin</name>
+  <channel>pear.symfony-project.com</channel>
+  <summary>Minify Javascript and CSS into files suitable for far-future caching.</summary>
+  <description>Minifies Javascript and CSS files into files with names that automatically change as the compressed files are modified. This makes it possible to set far-future expiry dates on the cache directory.</description>
+  <lead>
+    <name>Ally B</name>
+    <user>allyb</user>
+    <email>example@example.com</email>
+    <active>yes</active>
+  </lead>
+  <date>##CURRENT_DATE##</date>
+  <version>
+    <release>##PLUGIN_VERSION##</release>
+    <api>##API_VERSION##</api>
+  </version>
+  <stability>
+    <release>##STABILITY##</release>
+    <api>##STABILITY##</api>
+  </stability>
+  <license uri="http://www.symfony-project.org/license">MIT license</license>
+  <notes>-</notes>
+  <contents>
+    ##CONTENTS##
+  </contents>
+  <dependencies>
+    <required>
+      <php>
+        <min>5.2.4</min>
+      </php>
+      <pearinstaller>
+        <min>1.4.1</min>
+      </pearinstaller>
+      <package>
+        <name>symfony</name>
+        <channel>pear.symfony-project.com</channel>
+        <min>1.2.0</min>
+        <max>1.3.0</max>
+        <exclude>1.3.0</exclude>
+      </package>
+    </required>
+  </dependencies>
+  <phprelease></phprelease>
+  <changelog>
+  <release>
+   <version>
+    <release>0.2.1</release>
+    <api>2.1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-06-13</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>Added support for configuring the name of the cache directory web path. This is useful if you want to conceal your use of symfony and this plugin. Also fixed an issue with selectively disabling the compression of either js or css.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.2.0</release>
+    <api>2.1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-06-03</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>Fixed issues with the filter not working correctly, and it not being possible to disable the plugin easily.</notes>
+  </release>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>2.1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-05-15</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD License</license>
+   <notes>First release. Based on sfMinifyPlugin - 1.2.4 by Gordon Franke.</notes>
+  </release>
+  </changelog>
+</package>

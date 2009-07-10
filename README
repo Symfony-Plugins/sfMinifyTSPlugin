@@ -1,0 +1,76 @@
+# sfMinify plugin
+
+Integrates the minify library see [http://code.google.com/p/minify/](http://code.google.com/p/minify/ "minify") into symfony.
+
+## Overview
+
+Combines, minifies, and caches JavaScript and CSS files on demand to speed up page loads. 
+Names the combined, minified files based on the modification time of each component file,
+so editing CSS or JavaScript files will cause a new combined version to be created
+automatically. This makes it easier to set far-future expiry dates on assets.
+
+Based on sfMinifyPlugin by Gordon Franke. Adds support for unique file names based on 
+modification times of combined files.
+
+## Usage
+
+  * create a symlink in your web directory pointing to ``plugins/sfMinifyTSPlugin/web/`` or run ``symfony plugin:publish-assets``
+  * clear the symfony cache with ``symfony cc``
+  * then run ``symfony minify:permissions``
+
+### Filter or Helper
+
+you can activate minify over as a filter or with helpers
+
+  * change the common filter in your ``filters.yml`` to
+
+        [plain]
+        common:
+          class: sfMinifyTSFilter   # Filter class
+          param:
+            javascripts:        true
+            stylesheets:        true
+
+  * or add/change the helper in your layout file (default ``layout.php``) to
+
+        [php]
+        use_helper('SfMinifyTS');
+        minify_include_javascripts();
+        minify_include_stylesheets();
+        
+### Configuration
+
+you can enable and disable javascript or stylesheet minify by setting the params in ``filter.yml`` by default both types will be minified. You can also optionally create an alias to the cache path directory if you want to conceal your use of this plugin. Create a directory alias in your apache config file, e.g.:
+
+        [plain]
+        # an alias for the minify cache directory
+        Alias /cache /var/www/html/mysite/web/sfMinifyTSPlugin/cache
+        
+then add an extra parameter to your ``filters.yml`` file, ``cache_dir``:
+
+        [plain]
+        common:
+          class: sfMinifyTSFilter   # Filter class
+          param:
+            javascripts:        true
+            stylesheets:        true
+            cache_dir:          /cache/     # must have leading and trailing slashes
+
+All compressed files will then be created in the the usual web/sfMinifyTSPlugin/cache directory, but will be served from /cache
+
+#### Compression
+
+to compress the files simply set the ``compressed`` option to on in ``settings.yml``
+
+        [plain]
+        all:
+          .settings:
+            compressed:         on
+
+## Tasks
+
+This package provides 2 tasks:
+
+  * ``minify:clear-cache`` - extends the default symfony ``clear-cache`` task to clear the minify cache directory as well. It also adds a new type ``minify`` to only clear the minify cache.
+  
+  * ``minify:fix-permissions`` - fixes the permissions on the minify cache directory to make it world-writeable
