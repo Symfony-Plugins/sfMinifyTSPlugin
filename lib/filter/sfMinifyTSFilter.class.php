@@ -92,9 +92,9 @@ class sfMinifyTSFilter extends sfFilter
 
     // Before searching for stylesheets, strip out links to stylesheets in
     // IE conditional comments
-    if (preg_match('/<!--\[if.*endif\]-->/sim', $response->getContent()))
+    if (preg_match('/<!--\[if.*?endif\]-->/sim', $response->getContent()))
     {
-        $content = preg_replace('/<!--\[if.*endif\]-->/sim', '', $response->getContent());
+        $content = preg_replace('/<!--\[if.*?endif\]-->/sim', '', $response->getContent());
     }
     else
     {
