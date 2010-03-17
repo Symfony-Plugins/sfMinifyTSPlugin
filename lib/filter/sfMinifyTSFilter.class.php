@@ -122,7 +122,7 @@ class sfMinifyTSFilter extends sfFilter
       // replace the new names back into the response content
       $response->setContent(str_replace($javascripts, $javascriptMD5, $response->getContent()));
     }
-    
+
     if ($css && $this->getParameter('stylesheets', true))
     {
       list($cssFullPaths, $cssMD5) = $this->parseFileList($css);
@@ -240,11 +240,14 @@ class sfMinifyTSFilter extends sfFilter
    */
   private function getAttributesOfTag($content, $tagRegExp, $attrRegExp)
   {
-    if (preg_match($tagRegExp, $content, $matches))
+    if (preg_match_all($tagRegExp, $content, $matches))
     {
-      if (preg_match($attrRegExp, $matches[1], $attr))
+      foreach ($matches[1] as $attribute)
       {
-        return $attr[1];
+        if (preg_match($attrRegExp, $attribute, $attr))
+        {
+          return $attr[1];
+        }
       }
     }
   }
